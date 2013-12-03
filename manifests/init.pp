@@ -16,7 +16,7 @@ class jenkins {
 
     exec { "install jenkins key":
         command     => "wget -q -O - ${key_url} | apt-key add -; echo '${repo_url}' >> ${apt_sources}",
-        onlyif      => "grep -Fvxq '${repo_url}' ${apt_sources}",
+        onlyif      => "grep -Fcx '${repo_url}' ${apt_sources}",
         path        => ["/bin", "/usr/bin"],
     }
 
